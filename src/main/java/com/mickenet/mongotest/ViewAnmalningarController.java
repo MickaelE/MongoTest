@@ -31,10 +31,10 @@ public class ViewAnmalningarController {
     public ResponseEntity<Registration> updateRegistration(@RequestBody Registration registration, @PathVariable(value = "id") UUID id){
         return new ResponseEntity<Registration>(registrationService.updateRegistration(registration), HttpStatus.OK);
     }
-    @PutMapping(value = "/registration/")
+    @GetMapping(value = "/registration/")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Registration> getRegistration(@RequestBody Registration registration){
-        return new ResponseEntity<Registration>((Registration) registrationService.updateRegistration(registration ), HttpStatus.OK);
+    public ResponseEntity<Registration> getRegistrations(){
+        return new ResponseEntity<Registration>((Registration) registrationService.getReregistration(), HttpStatus.OK);
     }
     @DeleteMapping(value = "/registration/{id}")
     @ResponseStatus(HttpStatus.OK)
