@@ -17,9 +17,8 @@ public class RegistrationServiceImpl implements RegistrationService{
         else
             throw new MongoException("Record not Found");
     }
-
     @Override
-    public List<Registration> getReregistrationById() {
+    public List<Registration> getReregistration() {
             return registrationRepository.findAll();
     }
 

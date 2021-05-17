@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public interface RegistrationService {
     Registration getReregistrationById(UUID id);
-    List<Registration> getReregistrationById();
+    List<Registration> getReregistration();
     Registration createRegistration(Registration vehicleCreateDTO);
     Registration deleteRegistrationById(UUID id);
     Registration  updateRegistration(Registration registration);
