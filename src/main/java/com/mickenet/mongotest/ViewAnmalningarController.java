@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -33,8 +34,8 @@ public class ViewAnmalningarController {
     }
     @GetMapping(value = "/registration/")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Registration> getRegistrations(){
-        return new ResponseEntity<Registration>((Registration) registrationService.getReregistration(), HttpStatus.OK);
+    public ResponseEntity<List<Registration>> getRegistrations(){
+        return new ResponseEntity<List<Registration>>(registrationService.getReregistration(), HttpStatus.OK);
     }
     @DeleteMapping(value = "/registration/{id}")
     @ResponseStatus(HttpStatus.OK)

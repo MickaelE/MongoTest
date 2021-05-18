@@ -31,7 +31,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 
     @Override
     public Registration createRegistration(Registration registration1) {
-        Registration registration = new Registration(registration1.getLag(), registration1.getPersonalia(), registration1.getSizes());
+        Registration registration = new Registration(UUID.randomUUID(),registration1.getLag(), registration1.getPersonalia(), registration1.getSizes());
 
         return registrationRepository.save(registration);
     }
