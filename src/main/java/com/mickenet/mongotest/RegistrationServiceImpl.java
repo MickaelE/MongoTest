@@ -19,7 +19,14 @@ public class RegistrationServiceImpl implements RegistrationService{
     }
     @Override
     public List<Registration> getReregistration() {
-            return registrationRepository.findAll();
+        List<Registration> result = null;
+        try {
+            result = registrationRepository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
+        return result;
     }
 
     @Override
