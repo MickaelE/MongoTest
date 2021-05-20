@@ -11,11 +11,12 @@
     <groupId>com.mickenet</groupId>
     <artifactId>otservice</artifactId>
     <version>0.0.1</version>
-    <packaging>war</packaging>
     <name>otservice</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
+        <docker.registry.name></docker.registry.name><!-- leave empty for docker hub; use e.g. "localhost:5000/" for a local docker registry -->
+        <docker.repository.name>${docker.registry.name}bmlomier/${project.artifactId}</docker.repository.name>
     </properties>
     <dependencies>
         <dependency>
@@ -70,39 +71,58 @@
             <artifactId>spring-boot-maven-plugin</artifactId>
             <version>2.4.5</version>
         </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
-            <!--<plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.13</version>
+                <groupId>org.jolokia</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.13.3</version>
+                <configuration>
+                    <images>
+                        <image>
+                            <alias>${project.artifactId}</alias>
+                            <name>${docker.repository.name}:${project.version}</name>
+                            <build>
+                                <from>ubuntu:latest</from>
+                                <maintainer>mickaele</maintainer>
+                                <assembly>
+                                    <descriptor>docker-assembly.xml</descriptor>
+                                </assembly>
+                                <ports>
+                                    <port>8080</port>
+                                    <port>8081</port>
+                                </ports>
+                                <cmd>
+                                    <shell>java -jar \
+                                        /maven/${project.build.finalName}.jar server \
+                                        /maven/docker-config.yml</shell>
+                                </cmd>
+                            </build>
+                            <run>
+                                <!-- later more -->
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>default</id>
+                        <id>docker:build</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>build</goal>
-                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>docker:start</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>start</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <repository>${project.artifactId}</repository>
-                    <tag>${project.version}</tag>
-                    <buildArgs>
-                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                    </buildArgs>
-                </configuration>
-            </plugin>-->
-
+            </plugin>
         </plugins>
     </build>
-
 </project>
