@@ -125,7 +125,10 @@
                                 </cmd>
                             </build>
                             <run>
-                                <!-- later more -->
+                                <ports>
+                                    <port>8080:8080</port>
+                                    <port>8081:8081</port>
+                                </ports>
                             </run>
                         </image>
                     </images>
