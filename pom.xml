@@ -90,7 +90,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.mickenet.mongotest.MongoTestApplication</mainClass>
+                            <mainClass>com.mickenet.mongotest.OtServiceApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -14,7 +14,6 @@ public class Registration {
     @JsonSerialize(using = LegacyUuidSerializer.class)
     @JsonDeserialize(using = LegacyUuidDeserializer.class)
     public UUID _id;
-    @JsonProperty("Lag")
     public String lag;
     public List<Sizes> sizes;
     public List<Personalia> personalia;

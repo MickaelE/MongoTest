@@ -9,10 +9,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class MongoTestApplication {
+public class OtServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MongoTestApplication.class, args);
+        SpringApplication.run(OtServiceApplication.class, args);
     }
     @Bean
     public WebMvcConfigurer corsConfigurer() {
